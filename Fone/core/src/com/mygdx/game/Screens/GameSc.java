@@ -12,6 +12,7 @@ import com.mygdx.game.Main;
 import com.mygdx.game.Tools.BulletGenerator;
 import com.mygdx.game.Tools.Joystick;
 import com.mygdx.game.Tools.Point2D;
+import com.mygdx.game.Tools.Wave;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class GameSc implements Screen {
     public static Player player;
     public static ArrayList<Bullet> bullets;
     public static ArrayList<Enemy> enemies;
+    public static Wave wave;
     BulletGenerator bulletGenerator;
 
     public static Integer n = 0;
@@ -123,13 +125,14 @@ public class GameSc implements Screen {
         player.update();
         bulletGenerator.update(joy2);
         for (int i = 0; i < bullets.size(); i++) {bullets.get(i).update();
-            n++;
-            if (bullets.get(i).isOut || n == 2){
-                bullets.remove(i);
-                n = 0;
+            if (bullets.get(i).isOut){
+                bullets.remove(i--);
             }
         }
-        for (int i = 0; i < enemies.size(); i++) {enemies.get(i).update();}
+        for (int i = 0; i < enemies.size(); i++) {enemies.get(i).update();
+        if (enemies.get(i).getHealth() < 1){enemies.remove(i--);}}
+        colis();
+        wave.update();
     }
     public void gameRender(SpriteBatch batch){
         player.draw(batch);
@@ -146,13 +149,25 @@ public class GameSc implements Screen {
         enemies = new ArrayList<>();
         bulletGenerator = new BulletGenerator();
         player = new Player(Main.stick, new Point2D(Main.WIDTH/ 2, Main.HEIGHT/2), 10, Main.HEIGHT/20, 100);
-        enemies.add(new Enemy(Main.stick, new Point2D(Main.WIDTH/2, Main.HEIGHT/4) , 1));
+        wave = new Wave(5,1,5);
     }
 
     public void multitouch(float x, float y, boolean isDownTouch, int pointer){
         for (int i = 0; i < 5; i++) {
             joy.update(x, y, isDownTouch, pointer);
             joy2.update(x, y, isDownTouch, pointer);
+        }
+    }
+
+    public void colis(){
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < enemies.size(); j++) {
+                if (bullets.get(i).bounds.overLaps(enemies.get(j).bounds)){
+                    enemies.get(j).hit();
+                    bullets.remove(i);
+                    break;
+                }
+            }
         }
     }
 }

@@ -23,7 +23,6 @@ public abstract class Actor1092 extends GraphicsObj {
     public Actor1092(Texture img, Point2D position) {
         super(img);
         this.position = new Point2D(position);
-        bounds = new Circle(r, position);
         direction = new Point2D(0,0);
     }
 

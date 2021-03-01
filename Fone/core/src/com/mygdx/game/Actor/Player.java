@@ -1,5 +1,6 @@
 package com.mygdx.game.Actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Main;
@@ -16,7 +17,9 @@ public class Player extends Actor1092 {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(img, position.getX() - r, position.getY() - r);
+        batch.setColor(Color.ORANGE);
+        batch.draw(img, position.getX() - r, position.getY() - r, r*2, r*2);
+        batch.setColor(Color.WHITE);
 
     }
 
@@ -35,6 +38,8 @@ public class Player extends Actor1092 {
             position.setY(r);
         }
         position.add(direction.getX()*speed, direction.getY()*speed);
+        bounds.position.setP(position);
+
 
     }
 }

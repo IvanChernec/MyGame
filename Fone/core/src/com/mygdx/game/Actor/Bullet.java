@@ -30,5 +30,6 @@ public class Bullet extends Actor1092 {
 
 
         position.add(direction.getX() *  speed, direction.getY() * speed);
+        bounds.position.setP(position);
     }
 }

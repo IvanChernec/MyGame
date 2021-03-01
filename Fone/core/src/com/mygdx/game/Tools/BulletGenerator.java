@@ -1,6 +1,5 @@
 package com.mygdx.game.Tools;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.game.Actor.Bullet;
 import com.mygdx.game.Main;
 import com.mygdx.game.Screens.GameSc;
