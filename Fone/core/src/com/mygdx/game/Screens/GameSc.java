@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Actor.Bullet;
 import com.mygdx.game.Actor.Enemy;
 import com.mygdx.game.Actor.Player;
@@ -17,7 +16,7 @@ import com.mygdx.game.Tools.Wave;
 import java.util.ArrayList;
 
 
-public class GameSc implements Screen {
+public class GameSc implements Screen, InputProcessor {
 
     Joystick joy, joy2;
     public static Player player;
@@ -35,53 +34,7 @@ public class GameSc implements Screen {
     }
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputProcessor() {
-            @Override
-            public boolean keyDown(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyUp(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                screenY = Main.HEIGHT - screenY;
-                multitouch((int)screenX, (int) screenY, true, pointer);
-                return false;
-            }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                screenY = Main.HEIGHT - screenY;
-                multitouch((int)screenX, (int) screenY, false, pointer);
-                return false;
-            }
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                screenY = Main.HEIGHT - screenY;
-                multitouch((int)screenX, (int) screenY, true, pointer);
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-            @Override
-            public boolean scrolled(float amountX, float amountY) {
-                return false;
-            }
-        });
+        Gdx.input.setInputProcessor(this);
 
         loadActor();
 
@@ -170,4 +123,51 @@ public class GameSc implements Screen {
             }
         }
     }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        screenY = Main.HEIGHT - screenY;
+        multitouch((int)screenX, (int) screenY, true, pointer);
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        screenY = Main.HEIGHT - screenY;
+        multitouch((int)screenX, (int) screenY, false, pointer);
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        screenY = Main.HEIGHT - screenY;
+        multitouch((int)screenX, (int) screenY, true, pointer);
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        return false;
+    }
 }
+

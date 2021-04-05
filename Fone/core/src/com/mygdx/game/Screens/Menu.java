@@ -1,23 +1,25 @@
 package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Main;
 
 
 
 
-public class Menu implements Screen{
+public class Menu implements Screen, InputProcessor {
     Main main;
     private int width, height;
-    private Button btnstart;
-    private Skin skin;
     private BitmapFont font;
+    private Button btn;
+    private TextureRegionDrawable drawable;
     int GL_COLOR_BUFFER_BIT = 0x4000;
     public OrthographicCamera cam;
     public float ppuX;
@@ -25,7 +27,6 @@ public class Menu implements Screen{
     float CAMERA_WIDTH = 800F;
     float CAMERA_HEIGHT = 480F;
     boolean downBtn;
-    Stage stage;
 
 
     public Menu(Main main){this.main = main;}
@@ -40,26 +41,36 @@ public class Menu implements Screen{
         
         ppuX = (float)width / CAMERA_WIDTH;
         ppuY = (float)height / CAMERA_HEIGHT;
-        skin = new Skin();
         downBtn = false;
 
-        stage = new Stage();
-
-        Gdx.input.setInputProcessor(stage);
 
 
         this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
-        btnstart = new Button();
 
-        btnstart.setSize(100, 200);
-        btnstart.setPosition(10, 10);
-        stage.addActor(btnstart);
+        drawable = new TextureRegionDrawable(Main.btnstart);
+        btn = new Button(drawable);
+        btn.setSize(200,200);
+        btn.setPosition(20, 30);
+        btn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                downBtn = true;
+            }
+        });
+
+
+        Gdx.input.setInputProcessor(this);
+
+
+
 
 
 
 
 
     }
+
+
 
     public void setCam(float x, float y) {
         this.cam.position.set(x, y,0);
@@ -80,8 +91,11 @@ public class Menu implements Screen{
         Gdx.gl.glClearColor(0,0,0, 1);
         Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
 
+
+
         Main.batch.begin();
         showBG();
+        btn.draw(Main.batch, 1);
         Main.batch.end();
     }
 
@@ -108,6 +122,49 @@ public class Menu implements Screen{
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (downBtn){
+            main.setScreen(Main.gameSc);
+            return true;
+        }else return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        return false;
     }
 }
 
