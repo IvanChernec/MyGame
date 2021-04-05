@@ -23,6 +23,7 @@ public class GameSc implements Screen, InputProcessor {
     public static ArrayList<Bullet> bullets;
     public static ArrayList<Enemy> enemies;
     public static Wave wave;
+    private int GL_COLOR_BUFFER_BIT = 0x4000;
     BulletGenerator bulletGenerator;
 
     public static Integer n = 0;
@@ -42,6 +43,8 @@ public class GameSc implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0, 1);
+        Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
         gameUpdate();
         Main.batch.begin();
         gameRender(Main.batch);
