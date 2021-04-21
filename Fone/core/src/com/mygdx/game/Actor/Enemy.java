@@ -7,20 +7,20 @@ import com.mygdx.game.Tools.Circle;
 import com.mygdx.game.Tools.Point2D;
 
 public class Enemy extends Actor1092{
-    private int health, score, rank;
+    private static int health, score, rank;
 
     public Enemy(Texture img, Point2D position,int rank) {
         super(img, position);
 
 
-        if (rank == 1){ r = Main.WIDTH/250; speed = 25; score = health = 10;
-        }else if (rank == 2){ r = Main.WIDTH/150; speed = 15; score = health = 20;
-        }else if (rank == 3){ r = Main.WIDTH/100; speed = 10; score = health = 30;
-        }else { r = Main.WIDTH/50; speed = 25; score = health = 5;}
+        r = Main.WIDTH/20; speed = 1; score = health = 5;
+
         bounds = new Circle(r, position);
         direction.setX((float) Math.sin(Math.toRadians(Math.random() * 360)));
         direction.setY((float) Math.cos(Math.toRadians(Math.random() * 360)));
     }
+
+
 
     @Override
     public void draw(SpriteBatch batch) {

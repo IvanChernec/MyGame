@@ -26,6 +26,10 @@ public abstract class Actor1092 extends GraphicsObj {
         direction = new Point2D(0,0);
     }
 
+    public Point2D getPosition() {
+        return position;
+    }
+
     public void setDirection(Point2D dir){
         direction = dir;
     }

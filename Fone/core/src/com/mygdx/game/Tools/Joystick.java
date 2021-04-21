@@ -2,8 +2,9 @@ package com.mygdx.game.Tools;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Joystick {
+public class Joystick extends Actor {
     Texture circleImg, stickImg;
     Circle circleBounds, stickBounds;
     float rCircle, rStick;
