@@ -8,14 +8,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Screens.Battle;
 import com.mygdx.game.Screens.GameSc;
 import com.mygdx.game.Screens.Menu;
+import com.mygdx.game.Screens.Shop;
 
 public class Main extends Game {
 	public static SpriteBatch batch;
-	public static Texture circle, stick, fire, fon, btnstart, btnstartup, snowBullet, snow, fonGame;
+	public static Texture circle, stick, fire, fon, btnstart, btnstartup, snowBullet, snow, fonGame, player, shop, mob1, NPC;
 	public static int WIDTH, HEIGHT;
 	public static GameSc gameSc;
 	public static Menu menu;
 	public static Battle battle;
+	public static Shop shopSc;
 
 
 	
@@ -27,8 +29,13 @@ public class Main extends Game {
 		menu = new Menu(this);
 		gameSc = new GameSc(this);
 		battle = new Battle(this);
+		shopSc = new Shop(this);
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
+		NPC = new Texture("sensei.png");
+		mob1 = new Texture("Monster.png");
+		shop = new Texture("vendor.png");
+		player = new Texture("knight.png");
 		fonGame = new Texture("fonGame.jpg");
 		circle = new Texture("Circle.png");
 		stick = new Texture("Stick.png");

@@ -3,11 +3,12 @@ package com.mygdx.game.Actor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Main;
+import com.mygdx.game.Resources.Res;
 import com.mygdx.game.Tools.Circle;
 import com.mygdx.game.Tools.Point2D;
 
 public class Enemy extends Actor1092{
-    private static int health, score, rank;
+    private int health, score, rank;
 
     public Enemy(Texture img, Point2D position,int rank) {
         super(img, position);
@@ -22,11 +23,15 @@ public class Enemy extends Actor1092{
 
 
 
+
+
     @Override
     public void draw(SpriteBatch batch) {
         batch.draw(img, position.getX() - r, position.getY() - r, r*2, r*2);
 
     }
+
+
 
     @Override
     public void update() {
@@ -47,10 +52,14 @@ public class Enemy extends Actor1092{
     }
 
     public void hit(){
-        health--;
+        health -= Res.player.getDmg();
     }
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

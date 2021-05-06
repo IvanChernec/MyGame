@@ -1,12 +1,21 @@
 package com.mygdx.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Main;
+import com.mygdx.game.Resources.Res;
+
+import static com.mygdx.game.Resources.Res.enemies;
+
 
 public class Battle implements Screen {
     private Stage stage;
@@ -15,6 +24,12 @@ public class Battle implements Screen {
     private Button attack;
     private Main main;
     private Skin skin;
+    private BitmapFont enemy;
+    private BitmapFont player;
+    private Label enemyL, playerL;
+    private Label.LabelStyle enemySt, playerSt;
+
+
 
     public Battle(Main main){this.main = main;}
 
@@ -29,7 +44,41 @@ public class Battle implements Screen {
 
         attack.setPosition(300,200);
         attack.setSize(500, 500);
+        enemy = new BitmapFont();
+        player = new BitmapFont();
+        enemySt = new Label.LabelStyle(enemy, null);
+        playerSt = new Label.LabelStyle(player, null);
+        playerL = new Label(String.valueOf(Res.player.getHealth()), playerSt);
+        playerL.setFontScale(3);
+        playerL.setPosition(100, 1800);
+        enemyL = new Label(String.valueOf(enemies.get(GameSc.n).getHealth()), enemySt);
+        enemyL.setPosition(700, 1800);
+        enemyL.setFontScale(3);
+        
 
+        attack.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
+                    enemies.get(GameSc.n).hit();
+                    Res.player.hit();
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                }else if (Res.player.getHealth() > 0){
+                    Res.player.moneyMob(10);
+                    main.setScreen(Main.gameSc);
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                }else {
+                    main.setScreen(Main.gameSc);
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                }
+                return true;
+            }
+        });
+        stage.addActor(attack);
+        Gdx.input.setInputProcessor(stage);
 
 
     }
@@ -39,8 +88,10 @@ public class Battle implements Screen {
         Main.batch.begin();
         Main.batch.draw(fon, 0, 0, 1100, 2300);
         attack.draw(Main.batch, 1);
-        Main.batch.draw(Main.stick, 100, 1500, 200, 200);
-        Main.batch.draw(Main.stick, 700, 1500, 200, 200);
+        Main.batch.draw(Main.player, 100, 1500, 200, 200);
+        Main.batch.draw(Main.mob1, 700, 1500, 200, 200);
+        enemyL.draw(Main.batch, 1);
+        playerL.draw(Main.batch, 1);
         Main.batch.end();
 
     }

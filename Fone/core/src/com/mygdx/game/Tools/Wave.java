@@ -2,7 +2,10 @@ package com.mygdx.game.Tools;
 
 import com.mygdx.game.Actor.Enemy;
 import com.mygdx.game.Main;
-import com.mygdx.game.Screens.GameSc;
+import com.mygdx.game.Resources.Res;
+
+import static com.mygdx.game.Resources.Res.enemies;
+
 
 public class Wave {
     private int delay, waveNumber, minEnemy;
@@ -16,7 +19,7 @@ public class Wave {
     }
 
     public void update(){
-        if (GameSc.enemies.size() == 0 && startTimer == 0){startTimer = System.currentTimeMillis();}
+        if (enemies.size() == 0 && startTimer == 0){startTimer = System.currentTimeMillis();}
         int seconds = 0;
         if (startTimer > 0){seconds = (int) (System.currentTimeMillis() - startTimer)/1000;}
         if (seconds >= delay){setWave(); startTimer = 0; waveNumber++; seconds = 0;}
@@ -29,7 +32,7 @@ public class Wave {
         if (waveNumber > 5){ maxRank = 2; }
         if (waveNumber > 10){ maxRank = 3; }
 
-        for (int i = 0; i < enemies; i++) { GameSc.enemies.add(new Enemy(Main.stick,
+        for (int i = 0; i < enemies; i++) { Res.enemies.add(new Enemy(Main.mob1,
                 new Point2D(Main.WIDTH/2,
                         Main.HEIGHT/4) ,
                 (int)Math.random()*maxRank)); }
