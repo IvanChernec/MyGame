@@ -18,6 +18,7 @@ public class Shop implements Screen {
     private Texture fon, attackTx, exitTx;
     private Main main;
     private TextureRegionDrawable attackDr, exitDr;
+    private int GL_COLOR_BUFFER_BIT = 0x4000;
 
     public Shop(Main main){ this.main = main; }
 
@@ -69,6 +70,8 @@ public class Shop implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0, 1);
+        Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
         Main.batch.begin();
         Main.batch.draw(fon, 0, 0, 1024, 2300);
         attack.draw(Main.batch, 1);

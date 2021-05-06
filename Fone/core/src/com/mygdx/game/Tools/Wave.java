@@ -32,7 +32,7 @@ public class Wave {
         if (waveNumber > 5){ maxRank = 2; }
         if (waveNumber > 10){ maxRank = 3; }
 
-        for (int i = 0; i < enemies; i++) { Res.enemies.add(new Enemy(Main.mob1,
+        for (int i = 0; i < enemies; i++) { Res.enemies.add(new Enemy(Main.animal.get((int) (Math.random() * 3)),
                 new Point2D(Main.WIDTH/2,
                         Main.HEIGHT/4) ,
                 (int)Math.random()*maxRank)); }

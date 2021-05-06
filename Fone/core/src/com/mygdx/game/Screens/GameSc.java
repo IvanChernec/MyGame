@@ -87,6 +87,8 @@ public class GameSc implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0, 1);
+        Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
         gameUpdate();
         Main.batch.begin();
         gameRender(Main.batch);

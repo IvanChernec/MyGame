@@ -28,6 +28,7 @@ public class Battle implements Screen {
     private BitmapFont player;
     private Label enemyL, playerL;
     private Label.LabelStyle enemySt, playerSt;
+    private int GL_COLOR_BUFFER_BIT = 0x4000;
 
 
 
@@ -85,11 +86,13 @@ public class Battle implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0, 1);
+        Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
         Main.batch.begin();
         Main.batch.draw(fon, 0, 0, 1100, 2300);
         attack.draw(Main.batch, 1);
         Main.batch.draw(Main.player, 100, 1500, 200, 200);
-        Main.batch.draw(Main.mob1, 700, 1500, 200, 200);
+        Main.batch.draw(enemies.get(GameSc.n).img, 700, 1500, 200, 200);
         enemyL.draw(Main.batch, 1);
         playerL.draw(Main.batch, 1);
         Main.batch.end();

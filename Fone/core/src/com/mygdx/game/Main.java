@@ -10,9 +10,13 @@ import com.mygdx.game.Screens.GameSc;
 import com.mygdx.game.Screens.Menu;
 import com.mygdx.game.Screens.Shop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends Game {
 	public static SpriteBatch batch;
 	public static Texture circle, stick, fire, fon, btnstart, btnstartup, snowBullet, snow, fonGame, player, shop, mob1, NPC;
+	public static List<Texture> animal;
 	public static int WIDTH, HEIGHT;
 	public static GameSc gameSc;
 	public static Menu menu;
@@ -32,6 +36,10 @@ public class Main extends Game {
 		shopSc = new Shop(this);
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
+		animal = new ArrayList<>();
+		animal.add(new Texture("fox.png"));
+		animal.add(new Texture("bear.png"));
+		animal.add(new Texture("wolf.png"));
 		NPC = new Texture("sensei.png");
 		mob1 = new Texture("Monster.png");
 		shop = new Texture("vendor.png");
