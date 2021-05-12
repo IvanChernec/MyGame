@@ -14,12 +14,12 @@ import com.mygdx.game.Main;
 
 
 public class Menu implements Screen{
-    Main main;
-    private Button btn;
-    private TextureRegionDrawable drawable;
-    int GL_COLOR_BUFFER_BIT = 0x4000;
-    boolean downBtn;
-    Stage stage;
+    private Main main;
+    private Button btnKn, btnM;
+    private TextureRegionDrawable knight, mage;
+    private int GL_COLOR_BUFFER_BIT = 0x4000;
+    private Stage stage;
+    public static boolean skill;
 
 
     public Menu(Main main){this.main = main;}
@@ -28,25 +28,31 @@ public class Menu implements Screen{
 
     @Override
     public void show() {
-
-
-
-
-        downBtn = false;
         stage = new Stage();
 
+        knight = new TextureRegionDrawable(Main.player);
+        mage = new TextureRegionDrawable(Main.playerM);
+        btnKn = new Button(knight);
+        btnM = new Button(mage);
+        btnM.setSize(400, 400);
+        btnM.setPosition(600, 1000);
+        btnKn.setSize(400,400);
+        btnKn.setPosition(50, 1000);
 
+        stage.addActor(btnKn);
+        stage.addActor(btnM);
 
+        btnM.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Main.player = Main.playerM;
+                main.setScreen(Main.gameSc);
+                skill = true;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
-
-        drawable = new TextureRegionDrawable(Main.btnstart);
-        btn = new Button(drawable);
-        btn.setSize(550,450);
-        btn.setPosition(450, 1700);
-
-        stage.addActor(btn);
-
-        btn.addListener(new InputListener(){
+        btnKn.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 main.setScreen(Main.gameSc);
@@ -79,7 +85,8 @@ public class Menu implements Screen{
 
         Main.batch.begin();
         showBG();
-        btn.draw(Main.batch, 1);
+        btnKn.draw(Main.batch, 1);
+        btnM.draw(Main.batch, 1);
         Main.batch.end();
     }
 

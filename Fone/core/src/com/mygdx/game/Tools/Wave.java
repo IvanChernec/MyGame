@@ -10,7 +10,7 @@ import static com.mygdx.game.Resources.Res.enemies;
 public class Wave {
     private int delay, waveNumber, minEnemy;
     private long startTimer;
-    private String str = "Wave - ";
+    public static Integer n = 1;
 
     public Wave(int delay, int waveNumber, int minEnemy) {
         this.delay = delay;
@@ -32,9 +32,17 @@ public class Wave {
         if (waveNumber > 5){ maxRank = 2; }
         if (waveNumber > 10){ maxRank = 3; }
 
-        for (int i = 0; i < enemies; i++) { Res.enemies.add(new Enemy(Main.animal.get((int) (Math.random() * 3)),
-                new Point2D(Main.WIDTH/2,
-                        Main.HEIGHT/4) ,
-                (int)Math.random()*maxRank)); }
+        for (int i = 0; i < enemies; i++) {
+            if (n == 1) {
+                Res.enemies.add(new Enemy(Main.animal.get((int) (Math.random() * 3)),
+                        new Point2D(Main.WIDTH / 2,
+                                Main.HEIGHT / 4),
+                        (int) Math.random() * maxRank));
+            }else {
+                Res.enemies.add(new Enemy(Main.japan.get((int) (Math.random() * 4)),
+                        new Point2D(Main.WIDTH / 2,
+                                Main.HEIGHT / 4),
+                        (int) Math.random() * maxRank));
+            }}
     }
 }

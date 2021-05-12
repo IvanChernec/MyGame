@@ -9,12 +9,13 @@ import com.mygdx.game.Tools.Point2D;
 
 public class Enemy extends Actor1092{
     private int health, score, rank;
+    public static int rad  = Main.WIDTH/20, spd = 1, hlth = 5;
 
     public Enemy(Texture img, Point2D position,int rank) {
         super(img, position);
 
 
-        r = Main.WIDTH/20; speed = 1; score = health = 5;
+        r = rad; speed = spd; health = hlth;
 
         bounds = new Circle(r, position);
         direction.setX((float) Math.sin(Math.toRadians(Math.random() * 360)));
@@ -54,6 +55,7 @@ public class Enemy extends Actor1092{
     public void hit(){
         health -= Res.player.getDmg();
     }
+    public void hitSkill(){health -= Res.player.getSkill();}
 
     public int getHealth() {
         return health;

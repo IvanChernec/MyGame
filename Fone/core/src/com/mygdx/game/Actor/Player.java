@@ -6,9 +6,21 @@ import com.mygdx.game.Main;
 import com.mygdx.game.Tools.Point2D;
 
 public class Player extends Actor1092 {
-    private int score;
-    private float health;
-    private int dmg = 1, money = 100;
+
+    private int health;
+    private int dmg = 1, money = 100, skill = 10, mana = 100;
+    public static int lvl, lvlUp, xp;
+
+    public int getSkill() {
+        return skill;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+    public void manaSkill(){
+        mana -= 10;
+    }
 
     public void moneyMob(int a){
         money += a;
@@ -29,24 +41,24 @@ public class Player extends Actor1092 {
         return dmg;
     }
 
-    public Player(Texture img, Point2D position, float speed, float r, float health) {
+    public Player(Texture img, Point2D position, float speed, float r, int health) {
         super(img, position, speed, r);
         this.health = health;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setImg(Texture img){
+        this.img = img;
+    }
+
+    public void shopHeal(){
+        health = 100;
     }
 
     public void hit(){
         health--;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public float getHealth() {
+    public int getHealth() {
         return health;
     }
 

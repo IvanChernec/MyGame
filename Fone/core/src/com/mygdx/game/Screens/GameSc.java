@@ -17,13 +17,13 @@ import static com.mygdx.game.Resources.Res.wave;
 
 public class GameSc implements Screen {
 
-    Joystick joy;
+    private Joystick joy;
     private int GL_COLOR_BUFFER_BIT = 0x4000;
-    InputProcessor inputProcessor;
+    private InputProcessor inputProcessor;
 
     public static Integer n = 0;
 
-    Main main;
+    private Main main;
 
     public GameSc(Main main){
         this.main = main;
@@ -133,7 +133,7 @@ public class GameSc implements Screen {
         wave.update();
     }
     public void gameRender(SpriteBatch batch){
-        batch.draw(Main.fonGame, 0, 0, 1100, 2300);
+        batch.draw(Res.fon1, 0, 0, 1100, 2300);
         Res.player.draw(batch);
         shop.draw(batch);
         joy.draw(batch);
