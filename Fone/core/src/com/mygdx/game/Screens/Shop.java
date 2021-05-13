@@ -98,9 +98,9 @@ public class Shop implements Screen {
         exit = new Button(exitDr);
         japan = new Button(japanDr);
         skillJK = new Button(skillJKDr);
+
         stage = new Stage();
 
-        //Написать слушателей для кнопок
         japan.setSize(200, 200);
         japan.setPosition(350, 850);
         japan.addListener(new InputListener(){
@@ -127,6 +127,7 @@ public class Shop implements Screen {
             }
         });
 
+        /**для мага(начало)*/
         forest.setSize(200, 200);
         forest.setPosition(100, 850);
 
@@ -135,9 +136,12 @@ public class Shop implements Screen {
 
         shockBtn.setSize(200, 200);
         shockBtn.setPosition(100, 1300);
+        //для мага(конец)
 
+        /**для рыцаря(начало)*/
         skillJK.setSize(200, 200);
         skillJK.setPosition(100, 1300);
+        //для рыцаря(конец)
 
         heal.setPosition(200, 100);
         heal.setSize(200, 200);
@@ -207,10 +211,10 @@ public class Shop implements Screen {
         skillL.draw(Main.batch, 1);
         mapL.draw(Main.batch, 1);
         forest.draw(Main.batch, 1);
-        if (Menu.skill){
+        /** Маг */if (Menu.skill){
             shockBtn.draw(Main.batch, 1);
             snow.draw(Main.batch, 1);
-        }else {
+        }/** Рыцарь*/else {
             skillJK.draw(Main.batch, 1);
         }
         japan.draw(Main.batch, 1);

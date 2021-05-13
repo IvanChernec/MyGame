@@ -40,6 +40,12 @@ public class Main extends Game {
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
 
+		textures();
+
+		setScreen(menu);
+	}
+
+	public static void textures(){
 		animal = new ArrayList<>();
 		animal.add(new Texture("fox.png"));
 		animal.add(new Texture("bear.png"));
@@ -63,15 +69,11 @@ public class Main extends Game {
 		stick = new Texture("Stick.png");
 		fire = new Texture("fireball.png");
 		fon = new Texture("fonMenu.jpg");
-		btnstart = new Texture("cover_button_start_down.png");
-		btnstartup = new Texture("cover_button_start_up.png");
 		snowBullet = new Texture("snowflake_christmas.png");
 		snow = new Texture("snowflake.png");
 		fonJapan = new Texture("fonJapan.jpg");
 		fonJapanBattle = new Texture("fonJapanBattle.jpg");
 		shopJapan = new Texture("shopJapan.png");
-
-		setScreen(menu);
 	}
 
 

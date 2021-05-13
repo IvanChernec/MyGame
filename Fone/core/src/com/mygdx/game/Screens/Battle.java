@@ -39,9 +39,12 @@ public class Battle implements Screen {
         skin = new Skin();
 
         attackPng = new Texture("attack.png");
+
         stage = new Stage();
+
         skillDr = new TextureRegionDrawable(Main.fire);
         drawable = new TextureRegionDrawable(attackPng);
+
         skill = new Button(skillDr);
         attack = new Button(drawable);
 
@@ -73,25 +76,28 @@ public class Battle implements Screen {
             }
         });
 
-        attack.setPosition(0,150);
-        attack.setSize(300, 300);
         enemy = new BitmapFont();
         player = new BitmapFont();
         mana = new BitmapFont();
+
         manaSt = new Label.LabelStyle(mana, Color.SKY);
         enemySt = new Label.LabelStyle(enemy, Color.RED);
         playerSt = new Label.LabelStyle(player, Color.RED);
+
         manaL = new Label(String.valueOf("Mana: " + Res.player.getMana()), manaSt);
         manaL.setFontScale(3);
         manaL.setPosition(100, 1900);
+
         playerL = new Label(String.valueOf("Hp: " + Res.player.getHealth()), playerSt);
         playerL.setFontScale(3);
         playerL.setPosition(100, 1800);
+
         enemyL = new Label(String.valueOf("Hp: " + enemies.get(GameSc.n).getHealth()), enemySt);
         enemyL.setPosition(700, 1800);
         enemyL.setFontScale(3);
-        
 
+        attack.setPosition(0,150);
+        attack.setSize(300, 300);
         attack.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

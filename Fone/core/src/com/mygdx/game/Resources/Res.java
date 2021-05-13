@@ -16,7 +16,7 @@ public class Res {
     public static Texture fon1 = Main.fonGame, fon2 = Main.fonAttack;
     public static int n = 0;
 
-    //Написать сохранение
+    /** Написать сохранение */
 
     public static void loadActor(){
         if (n == 0) {

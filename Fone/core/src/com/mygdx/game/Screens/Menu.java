@@ -32,10 +32,13 @@ public class Menu implements Screen{
 
         knight = new TextureRegionDrawable(Main.player);
         mage = new TextureRegionDrawable(Main.playerM);
-        btnKn = new Button(knight);
+
+
         btnM = new Button(mage);
         btnM.setSize(400, 400);
         btnM.setPosition(600, 1000);
+
+        btnKn = new Button(knight);
         btnKn.setSize(400,400);
         btnKn.setPosition(50, 1000);
 
