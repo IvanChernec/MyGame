@@ -22,7 +22,9 @@ public class Menu implements Screen{
     public static boolean skill;
 
 
-    public Menu(Main main){this.main = main;}
+
+
+    public Menu(Main main){this.main = main; }
 
 
 
@@ -48,9 +50,9 @@ public class Menu implements Screen{
         btnM.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Main.player = Main.playerM;
+                Main.WRITE(Main.skill, true);
+                skill = Main.READ_BOOLEAN(Main.skill);
                 main.setScreen(Main.gameSc);
-                skill = true;
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -59,6 +61,7 @@ public class Menu implements Screen{
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 main.setScreen(Main.gameSc);
+                skill = Main.READ_BOOLEAN(Main.skill);
                 return super.touchDown(event, x, y, pointer, button);
             }
         });

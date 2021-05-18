@@ -5,28 +5,44 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Main;
 import com.mygdx.game.Tools.Point2D;
 
+import static com.mygdx.game.Main.*;
+
 public class Player extends Actor1092 {
 
-    private int health;
-    private int dmg = 1, money = 100, skill = 10, mana = 100;
-    public static int lvl, lvlUp, xp;
 
-    public int getSkill() {
-        return skill;
+
+    private int health = Main.READ_INT(healthF),
+            dmg = Main.READ_INT(dmgF),
+            money = Main.READ_INT(moneyF),
+            mana = Main.READ_INT(manaF);
+    public static int lvl = Main.READ_INT(lvlF),
+            lvlUp = Main.READ_INT(lvlUpF),
+            xp = Main.READ_INT(xpF);
+
+
+
+    public Player(Texture img, Point2D position, float speed, float r) {
+        super(img, position, speed, r);
     }
 
     public int getMana() {
         return mana;
     }
-    public void manaSkill(){
-        mana -= 10;
+    public void shopMana(){Main.WRITE(manaF, 100);
+        mana = Main.READ_INT(manaF);}
+
+    public void manaSkill(int n){
+        Main.WRITE(manaF, mana - n);
+        mana = Main.READ_INT(manaF);
     }
 
     public void moneyMob(int a){
-        money += a;
+        Main.WRITE(moneyF, money + a);
+        money = Main.READ_INT(moneyF);
     }
     public void moneyShop(int a){
-        money -= a;
+        Main.WRITE(moneyF, money - a);
+        money = Main.READ_INT(moneyF);
     }
 
     public int getMoney() {
@@ -34,16 +50,12 @@ public class Player extends Actor1092 {
     }
 
     public void upgradeDmg(int a){
-        dmg += a;
+        Main.WRITE(dmgF, dmg + a);
+        dmg = Main.READ_INT(dmgF);
     }
 
     public int getDmg() {
         return dmg;
-    }
-
-    public Player(Texture img, Point2D position, float speed, float r, int health) {
-        super(img, position, speed, r);
-        this.health = health;
     }
 
     public void setImg(Texture img){
@@ -51,11 +63,13 @@ public class Player extends Actor1092 {
     }
 
     public void shopHeal(){
-        health = 100;
+        Main.WRITE(healthF, 100);
+        health = Main.READ_INT(healthF);
     }
 
-    public void hit(){
-        health--;
+    public void hit(int a){
+        Main.WRITE(healthF, health - a);
+        health = Main.READ_INT(healthF);
     }
 
     public int getHealth() {

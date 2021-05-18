@@ -21,8 +21,8 @@ import static com.mygdx.game.Resources.Res.enemies;
 public class Battle implements Screen {
     private Stage stage;
     private Texture attackPng;
-    private TextureRegionDrawable drawable, skillDr;
-    private Button attack, skill;
+    private TextureRegionDrawable drawable, skillDr, skillShockDr, skillSnowDr, skillKnightDr;
+    private Button attack, skillFire, skillShock, skillSnow, skillKnight;
     private Main main;
     private Skin skin;
     private BitmapFont enemy, player, mana;
@@ -43,21 +43,113 @@ public class Battle implements Screen {
         stage = new Stage();
 
         skillDr = new TextureRegionDrawable(Main.fire);
+        skillShockDr = new TextureRegionDrawable(new Texture("shock.png"));
+        skillSnowDr = new TextureRegionDrawable(Main.snow);
         drawable = new TextureRegionDrawable(attackPng);
+        skillKnightDr = new TextureRegionDrawable(Main.skillJKTx);
 
-        skill = new Button(skillDr);
+        skillKnight = new Button(skillKnightDr);
+        skillFire = new Button(skillDr);
+        skillShock = new Button(skillShockDr);
+        skillSnow = new Button(skillSnowDr);
         attack = new Button(drawable);
 
-        skill.setPosition(300, 150);
-        skill.setSize(300, 300);
-        skill.addListener(new InputListener(){
+        skillKnight.setPosition(250, 150);
+        skillKnight.setSize(200, 200);
+        skillKnight.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
-                    enemies.get(GameSc.n).hitSkill();
-                    Res.player.hit();
                     if (Res.player.getMana() > 10) {
-                        Res.player.manaSkill();
+                        Res.player.manaSkill(10);
+                        enemies.get(GameSc.n).hitSkill(30);
+                        Res.player.hit(1);
+                    }
+                    playerL.setText(String.valueOf("Hp: " + Res.player.getHealth()));
+                    manaL.setText(String.valueOf("Mana: " + Res.player.getMana()));
+                    enemyL.setText(String.valueOf("Hp: " + enemies.get(GameSc.n).getHealth()));
+                }else if (Res.player.getHealth() > 0){
+                    Res.player.moneyMob(10);
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(0));
+                    main.setScreen(Main.gameSc);
+                }else {
+                    playerL.setText(String.valueOf(0));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                    main.setScreen(Main.gameSc);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        skillShock.setPosition(700, 150);
+        skillShock.setSize(200, 200);
+        skillShock.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
+                    if (Res.player.getMana() > 20) {
+                        Res.player.manaSkill(20);
+                        enemies.get(GameSc.n).hitSkill(20);
+                        Res.player.hit(1);
+                    }
+                    playerL.setText(String.valueOf("Hp: " + Res.player.getHealth()));
+                    manaL.setText(String.valueOf("Mana: " + Res.player.getMana()));
+                    enemyL.setText(String.valueOf("Hp: " + enemies.get(GameSc.n).getHealth()));
+                }else if (Res.player.getHealth() > 0){
+                    Res.player.moneyMob(10);
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(0));
+                    main.setScreen(Main.gameSc);
+                }else {
+                    playerL.setText(String.valueOf(0));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                    main.setScreen(Main.gameSc);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        skillSnow.setPosition(450, 150);
+        skillSnow.setSize(200, 200);
+        skillSnow.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
+
+                    if (Res.player.getMana() > 5) {
+                        Res.player.manaSkill(5);
+                        enemies.get(GameSc.n).hitSkill(5);
+                        Res.player.hit(1);
+                    }
+                    playerL.setText(String.valueOf("Hp: " + Res.player.getHealth()));
+                    manaL.setText(String.valueOf("Mana: " + Res.player.getMana()));
+                    enemyL.setText(String.valueOf("Hp: " + enemies.get(GameSc.n).getHealth()));
+                }else if (Res.player.getHealth() > 0){
+                    Res.player.moneyMob(10);
+                    playerL.setText(String.valueOf(Res.player.getHealth()));
+                    enemyL.setText(String.valueOf(0));
+                    main.setScreen(Main.gameSc);
+                }else {
+                    playerL.setText(String.valueOf(0));
+                    enemyL.setText(String.valueOf(enemies.get(GameSc.n).getHealth()));
+                    main.setScreen(Main.gameSc);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        skillFire.setPosition(250, 150);
+        skillFire.setSize(200, 200);
+        skillFire.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
+
+                    if (Res.player.getMana() > 10) {
+                        Res.player.manaSkill(10);
+                        enemies.get(GameSc.n).hitSkill(10);
+                        Res.player.hit(1);
                     }
                     playerL.setText(String.valueOf("Hp: " + Res.player.getHealth()));
                     manaL.setText(String.valueOf("Mana: " + Res.player.getMana()));
@@ -96,14 +188,14 @@ public class Battle implements Screen {
         enemyL.setPosition(700, 1800);
         enemyL.setFontScale(3);
 
-        attack.setPosition(0,150);
+        attack.setPosition(0,100);
         attack.setSize(300, 300);
         attack.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (enemies.get(GameSc.n).getHealth() > 0 && Res.player.getHealth() > 0){
                     enemies.get(GameSc.n).hit();
-                    Res.player.hit();
+                    Res.player.hit(1);
                     playerL.setText(String.valueOf("Hp: " + Res.player.getHealth()));
                     manaL.setText(String.valueOf("Mana: " + Res.player.getMana()));
                     enemyL.setText(String.valueOf("Hp: " + enemies.get(GameSc.n).getHealth()));
@@ -121,8 +213,13 @@ public class Battle implements Screen {
             }
         });
 
-        stage.addActor(skill);
+
+
         stage.addActor(attack);
+        if (Menu.skill){ stage.addActor(skillFire); }
+        if (Menu.skill && Res.snowSk){ stage.addActor(skillSnow);
+        }else if (Menu.skill && Res.shockSk) { stage.addActor(skillShock); }
+        if (!Menu.skill && Res.skillKnight){ stage.addActor(skillKnight); }
         Gdx.input.setInputProcessor(stage);
 
 
@@ -134,7 +231,19 @@ public class Battle implements Screen {
         Gdx.gl.glClear(GL_COLOR_BUFFER_BIT);
         Main.batch.begin();
         Main.batch.draw(Res.fon2, 0, 0, 1100, 2300);
-        if (Menu.skill){skill.draw(Main.batch, 1);}
+
+        if (Menu.skill) {
+            skillFire.draw(Main.batch, 1);
+        }
+        if (Menu.skill && Res.snowSk){
+            skillSnow.draw(Main.batch, 1);
+        }
+        if (Res.shockSk && Menu.skill) {
+            skillShock.draw(Main.batch, 1);
+        }
+        if (!Menu.skill && Res.skillKnight){
+            skillKnight.draw(Main.batch, 1);
+        }
         attack.draw(Main.batch, 1);
         Main.batch.draw(Main.player, 100, 1500, 200, 200);
         Main.batch.draw(enemies.get(GameSc.n).img, 700, 1500, 200, 200);

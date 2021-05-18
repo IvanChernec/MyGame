@@ -13,17 +13,36 @@ public class Res {
     public static Player player, shop, map;
     public static ArrayList<Enemy> enemies;
     public static Wave wave;
-    public static Texture fon1 = Main.fonGame, fon2 = Main.fonAttack;
-    public static int n = 0;
+    public static Texture fon1, fon2;
+    public static int n = 0, a = 0;
+    public static boolean
+            jpn = Main.READ_BOOLEAN(Main.jpn),
+            shockSk = Main.READ_BOOLEAN(Main.sh),
+            snowSk = Main.READ_BOOLEAN(Main.sn),
+            skillKnight = Main.READ_BOOLEAN(Main.sn);
 
-    /** Написать сохранение */
 
     public static void loadActor(){
+       if (jpn && a != 0){
+            Res.fon1 = Main.fonJapan;
+            Res.fon2 = Main.fonJapanBattle;
+            Res.shop.img = Main.shopJapan;
+            Enemy.hlth = 30;
+        }else if (!jpn && a != 0){
+            Res.fon1 = Main.fonGame;
+            Res.fon2 = Main.fonAttack;
+            Res.shop.img = Main.shop;
+            Enemy.hlth = 5;
+        }
         if (n == 0) {
             enemies = new ArrayList<>();
-            player = new Player(Main.player, new Point2D(Main.WIDTH / 2, Main.HEIGHT / 2), 10, Main.HEIGHT / 40, 100);
-            shop = new Player(Main.shop, new Point2D(900, 2000), 0, Main.HEIGHT / 10, 1);
-            map = new Player(Main.map, new Point2D(100, 2000), 0, Main.HEIGHT/ 10, 1);
+           if (Main.READ_BOOLEAN(Main.skill)){
+                player = new Player(Main.playerM, new Point2D(Main.WIDTH / 2, Main.HEIGHT / 2), 10, Main.HEIGHT / 40);
+            }else {
+                player = new Player(Main.player, new Point2D(Main.WIDTH / 2, Main.HEIGHT / 2), 10, Main.HEIGHT / 40);
+            }
+            shop = new Player(Main.shop, new Point2D(900, 2000), 0, Main.HEIGHT / 10);
+            map = new Player(Main.map, new Point2D(100, 2000), 0, Main.HEIGHT/ 10);
             wave = new Wave(5, 1, 5);
             n++;
         }

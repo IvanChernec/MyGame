@@ -8,7 +8,7 @@ import com.mygdx.game.Tools.Circle;
 import com.mygdx.game.Tools.Point2D;
 
 public class Enemy extends Actor1092{
-    private int health, score, rank;
+    private int health;
     public static int rad  = Main.WIDTH/20, spd = 1, hlth = 5;
 
     public Enemy(Texture img, Point2D position,int rank) {
@@ -55,7 +55,7 @@ public class Enemy extends Actor1092{
     public void hit(){
         health -= Res.player.getDmg();
     }
-    public void hitSkill(){health -= Res.player.getSkill();}
+    public void hitSkill(int a){health -= a;}
 
     public int getHealth() {
         return health;
