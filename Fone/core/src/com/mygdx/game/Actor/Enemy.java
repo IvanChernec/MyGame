@@ -8,8 +8,10 @@ import com.mygdx.game.Tools.Circle;
 import com.mygdx.game.Tools.Point2D;
 
 public class Enemy extends Actor1092{
-    private int health;
-    public static int rad  = Main.WIDTH/20, spd = 1, hlth = 5;
+    private int health, score, rank;
+    public static int rad  = Main.WIDTH/20, spd = 1, hlth = Main.READ_INT(Main.hlth),
+            dmgE = Main.READ_INT(Main.dmgE),
+            dmgEBoss = Main.READ_INT(Main.dmgEBoss);
 
     public Enemy(Texture img, Point2D position,int rank) {
         super(img, position);

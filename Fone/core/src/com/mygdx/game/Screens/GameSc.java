@@ -3,11 +3,19 @@ package com.mygdx.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.mygdx.game.Actor.Player;
 import com.mygdx.game.Main;
 import com.mygdx.game.Resources.Res;
 import com.mygdx.game.Tools.Joystick;
 import com.mygdx.game.Tools.Point2D;
+
+import java.time.format.TextStyle;
+
+import javax.swing.plaf.TextUI;
 
 import static com.mygdx.game.Resources.Res.enemies;
 import static com.mygdx.game.Resources.Res.loadActor;
@@ -20,6 +28,9 @@ public class GameSc implements Screen {
     private Joystick joy;
     private int GL_COLOR_BUFFER_BIT = 0x4000;
     private InputProcessor inputProcessor;
+    private BitmapFont lvl, xp;
+    private Label lvlL, xpL;
+    private Label.LabelStyle lvlSt, xpSt;
 
     public static Integer n = 0;
 
@@ -30,7 +41,31 @@ public class GameSc implements Screen {
     }
     @Override
     public void show() {
+        if (Res.jpn){
+            Main.japanMs.play();
+            Main.forestMs.stop();
+        }else {
+            Main.forestMs.play();
+            Main.japanMs.stop();
+        }
+        Player.lvlUpM();
+        lvl = new BitmapFont();
+        xp = new BitmapFont();
 
+        lvlSt = new Label.LabelStyle(lvl, null);
+        xpSt = new Label.LabelStyle(xp, null);
+
+        lvlL = new Label(String.valueOf("Lvl:" + Res.player.lvl), lvlSt);
+        xpL = new Label(String.valueOf("XP: " + Res.player.xp + "/" + Res.player.lvlUp), xpSt);
+        lvlL.setPosition(30, 100);
+        lvlL.setFontScale(3);
+        lvlL.setColor(Color.GREEN);
+
+        xpL.setPosition(30, 50);
+        xpL.setFontScale(3);
+        xpL.setColor(Color.YELLOW);
+
+        Res.a = 1;
         inputProcessor = new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
@@ -92,6 +127,8 @@ public class GameSc implements Screen {
         gameUpdate();
         Main.batch.begin();
         gameRender(Main.batch);
+        lvlL.draw(Main.batch, 1);
+        xpL.draw(Main.batch, 1);
         Main.batch.end();
     }
 
@@ -152,6 +189,9 @@ public class GameSc implements Screen {
         for (int j = 0; j < enemies.size(); j++) {
             if (Res.player.bounds.overLaps(enemies.get(j).bounds)){
                 n = j;
+                Main.japanMs.stop();
+                Main.forestMs.stop();
+
                 main.setScreen(Main.battle);
                 break;
             }
