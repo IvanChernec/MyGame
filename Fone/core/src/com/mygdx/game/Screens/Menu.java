@@ -90,7 +90,6 @@ public class Menu implements Screen{
 
 
         Main.batch.begin();
-        showBG();
         btnKn.draw(Main.batch, 1);
         btnM.draw(Main.batch, 1);
         Main.batch.end();

@@ -44,7 +44,7 @@ public class Wave {
             Enemy.dmgE = Enemy.dmgEBoss;
             Enemy.hlth = Res.bossHP;
             Enemy.rad = Main.WIDTH/5;
-            Res.enemies.add(new Enemy(Main.boss.get((int) (Math.random() * 2)),
+            Res.enemies.add(new Enemy(Main.boss.get((int) (Math.random() * 3)),
                     new Point2D(Main.WIDTH / 2,
                     Main.HEIGHT / 4), 1));
             Res.boss = true;
@@ -52,13 +52,11 @@ public class Wave {
             for (int i = 0; i < enemies; i++) {
                 if (n == 1) {
                     Res.enemies.add(new Enemy(Main.animal.get((int) (Math.random() * 3)),
-                            new Point2D(Main.WIDTH / 2,
-                                    Main.HEIGHT / 4),
+                            new Point2D((float) (Math.random() * 1000), (float) (Math.random() * 2000)),
                             (int) Math.random() * maxRank));
                 } else {
                     Res.enemies.add(new Enemy(Main.japan.get((int) (Math.random() * 4)),
-                            new Point2D(Main.WIDTH / 2,
-                                    Main.HEIGHT / 4),
+                            new Point2D((float) (Math.random() * 1000), (float) (Math.random() * 2000)),
                             (int) Math.random() * maxRank));
                 }
             }

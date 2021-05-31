@@ -5,14 +5,14 @@ import com.mygdx.game.Tools.Circle;
 import com.mygdx.game.GraphicsObl.GraphicsObj;
 import com.mygdx.game.Tools.Point2D;
 
-public abstract class Actor1092 extends GraphicsObj {
+public abstract class MyActor extends GraphicsObj {
     public Point2D position;
     public float speed, r;
     public Circle bounds;
 
     public Point2D direction;
 
-    public Actor1092(Texture img, Point2D position, float speed, float r) {
+    public MyActor(Texture img, Point2D position, float speed, float r) {
         super(img);
         this.position = new Point2D(position);
         this.speed = speed;
@@ -20,7 +20,7 @@ public abstract class Actor1092 extends GraphicsObj {
         bounds = new Circle(r, position);
         direction = new Point2D(0,0);
     }
-    public Actor1092(Texture img, Point2D position) {
+    public MyActor(Texture img, Point2D position) {
         super(img);
         this.position = new Point2D(position);
         direction = new Point2D(0,0);

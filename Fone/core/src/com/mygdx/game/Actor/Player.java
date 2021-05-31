@@ -8,7 +8,7 @@ import com.mygdx.game.Tools.Point2D;
 
 import static com.mygdx.game.Main.*;
 
-public class Player extends Actor1092 {
+public class Player extends MyActor {
 
 
 

@@ -123,6 +123,7 @@ public class Main extends Game {
 		boss = new ArrayList<>();
 		boss.add(new Texture("boss1.png"));
 		boss.add(new Texture("boss2.png"));
+		boss.add(new Texture("boss3.png"));
 
 		japan = new ArrayList<>();
 		japan.add(new Texture("enemyJapan1.png"));

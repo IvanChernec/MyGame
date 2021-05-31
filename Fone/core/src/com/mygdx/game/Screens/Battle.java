@@ -24,7 +24,7 @@ import static com.mygdx.game.Resources.Res.enemies;
 public class Battle implements Screen {
     private Stage stage;
     private Texture attackPng;
-    private TextureRegionDrawable drawable, skillDr, skillShockDr, skillSnowDr, skillKnightDr, manaPDr, healPDr;
+    private TextureRegionDrawable drawable, skillDr, skillShockDr, skillSnowDr, skillKnightDr, manaPoDr, healPoDr;
     private Button attack, skillFire, skillShock, skillSnow, skillKnight, healP, manaP;
     private Main main;
     private BitmapFont enemy, player, mana, healPBt, manaPBt;
@@ -80,8 +80,8 @@ public class Battle implements Screen {
         skillSnowDr = new TextureRegionDrawable(Main.snow);
         drawable = new TextureRegionDrawable(attackPng);
         skillKnightDr = new TextureRegionDrawable(Main.skillJKTx);
-        manaPDr = new TextureRegionDrawable(Main.mana);
-        healPDr = new TextureRegionDrawable(Main.healTx);
+        manaPoDr = new TextureRegionDrawable(Main.mana);
+        healPoDr = new TextureRegionDrawable(Main.healTx);
 
 
         skillKnight = new Button(skillKnightDr);
@@ -89,8 +89,8 @@ public class Battle implements Screen {
         skillShock = new Button(skillShockDr);
         skillSnow = new Button(skillSnowDr);
         attack = new Button(drawable);
-        healP = new Button(healPDr);
-        manaP = new Button(manaPDr);
+        healP = new Button(healPoDr);
+        manaP = new Button(manaPoDr);
 
         manaP.setPosition(250, 500);
         manaP.setSize(200, 200);
